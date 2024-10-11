@@ -2,30 +2,28 @@ using System;
 using System.Net;
 using System.Collections.Generic;
 
+
 class Reference
 {
-    private String _book;
+    private string _book;
     private int _chapter;
     private int _verse;
-    private int _endverse;
+    private int _endVerse;
 
-    public Reference(String book, int chapter, int verse )
+    public Reference(string book, int chapter, int verse)
     {
         _book = book;
         _chapter = chapter;
         _verse = verse;
     }
 
-    public Reference(String book, int chapter, int Startverse, int endverse)
+    public Reference(string book, int chapter, int startVerse, int endVerse)
     {
         _book = book;
         _chapter = chapter;
-        _endverse = endverse;
-
+        _verse = startVerse;
+        _endVerse = endVerse;
     }
 
-    // public String GetDisplayText()
-    // {
-
-    // }
+    // Optional: Add a method to display the reference (book, chapter, verse).
 }

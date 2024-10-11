@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 class Word
 {
-    private String _text;
-    private bool _isHidden = false;
+    private string _text;
+    private bool _isHidden;
 
-    public Word(String text)
+    public Word(string text)
     {
         _text = text;
         _isHidden = false;
@@ -18,27 +18,13 @@ class Word
         _isHidden = true;
     }
 
-    public void Show()
-    {
-        _isHidden = false;
-    }
-
     public bool IsHidden()
     {
         return _isHidden;
     }
 
-    public String GetDisplayText()
+    public string GetDisplayText()
     {
-        if (IsHidden())
-        {
-
-            return "";
-
-        }
-        else
-        {
-            return _text;
-        }
+        return _isHidden ? "____" : _text;
     }
 }

@@ -4,49 +4,54 @@ using System.Collections.Generic;
 
 class Scripture
 {
-    private Reference _Reference;
-    private List<Word> _words = new List<Word>();
+    private Reference _reference;
+    private List<Word> _words;
 
     public Scripture(Reference reference, string text)
     {
-        string[] split = text.Split(" ");
-        _Reference = reference;
-        foreach (var words in split)
-        {
-            _words.Add(new Word(words));
+        _reference = reference;
+        _words = new List<Word>();
+        string[] splitText = text.Split(' ');
 
+        foreach (var word in splitText)
+        {
+            _words.Add(new Word(word));
         }
     }
 
     public void HideRandomWords(int numberToHide)
     {
-        Random randomNum = new Random();
-
+        Random random = new Random();
         int hidden = 0;
-        while(hidden < numberToHide)
-        {
 
-        int counter = randomNum.Next(0, _words.Count);
-        if(!_words[counter].IsHidden())
+        while (hidden < numberToHide && !IsCompletelyHidden())
         {
-            _words[counter].Hide();
-            hidden++;
-        }
-        else
-        {
-            _words[counter].Show();
-        }
-
+            int index = random.Next(0, _words.Count);
+            if (!_words[index].IsHidden())
+            {
+                _words[index].Hide();
+                hidden++;
+            }
         }
     }
-    
+
     public string GetDisplayText()
     {
-        return "hello world";
+        List<string> displayWords = new List<string>();
+        foreach (var word in _words)
+        {
+            displayWords.Add(word.GetDisplayText());
+        }
+        return string.Join(" ", displayWords);
     }
 
-    public bool IscomplrtrlyHidden()
+    public bool IsCompletelyHidden()
     {
-        return false;
+        foreach (var word in _words)
+        {
+            if (!word.IsHidden())
+                return false;
+        }
+        return true;
     }
 }
